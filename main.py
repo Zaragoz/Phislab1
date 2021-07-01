@@ -63,8 +63,10 @@ class Theory(QtWidgets.QWidget):
         self.kin.setLayout(self.kinlayout)
         self.kinbtn = QtWidgets.QPushButton("Кинематика")
         self.kinlayout.addWidget(self.kinbtn)
+        self.kinbtn.clicked.connect(theory.openkin)
         self.basicKin = QtWidgets.QPushButton("Основные понятия кинематики")
         self.kinlayout.addWidget(self.basicKin)
+        self.basicKin.clicked.connect(theory.openbck)
         self.rpd = QtWidgets.QPushButton("Равномермерное  прямолинейное движение")
         self.kinlayout.addWidget(self.rpd)
         self.rzrpd = QtWidgets.QPushButton("Решение задач на равномерное прямолинейное движение")
@@ -198,6 +200,32 @@ class Mechanics(QtWidgets.QWidget):
 
 
 
+class Kinematics(QtWidgets.QWidget):
+    def setupUi(self, kinematics):
+        kinematics.resize(500, 500)
+        self.vbox = QtWidgets.QVBoxLayout()
+        kinematics.setLayout(self.vbox)
+        f = codecs.open("Kinematics.txt", encoding="utf-8")
+        self.label = QtWidgets.QLabel(f.read())
+        self.vbox.addWidget(self.label)
+        f.close()
+
+
+
+
+class BasikConceptKinematics(QtWidgets.QWidget):
+    def setupUi(self, bck):
+        bck.resize(500, 500)
+        self.vbox = QtWidgets.QVBoxLayout()
+        bck.setLayout(self.vbox)
+        f = codecs.open("BasicConceptKinematics.txt", encoding="utf-8")
+        self.label =QtWidgets.QLabel(f.read())
+        self.vbox.addWidget(self.label)
+        f.close()
+
+
+
+
 
 class Lab(QtWidgets.QWidget):
     def setupUi(self, lab):
@@ -236,6 +264,12 @@ class MyTheory(QtWidgets.QWidget):
     def openmex(self):
         self.exMechanics = MyMechanics()
         self.exMechanics.show()
+    def openkin(self):
+        self.exKinematics = MyKinematics()
+        self.exKinematics.show()
+    def openbck(self):
+        self.exbck = MyBasicConceptKinematics()
+        self.exbck.show()
 
 
 
@@ -244,6 +278,24 @@ class MyMechanics(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
         self.ui = Mechanics()
+        self.ui.setupUi(self)
+
+
+
+
+class MyKinematics(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.ui = Kinematics()
+        self.ui.setupUi(self)
+
+
+
+
+class MyBasicConceptKinematics(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.ui = BasikConceptKinematics()
         self.ui.setupUi(self)
 
 
