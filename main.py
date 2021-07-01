@@ -1,4 +1,5 @@
 import sys
+import codecs
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class MainWindow(QtWidgets.QWidget):
@@ -189,7 +190,10 @@ class Mechanics(QtWidgets.QWidget):
         mechanics.resize(500, 500)
         self.vbox = QtWidgets.QVBoxLayout()
         mechanics.setLayout(self.vbox)
-        f = open()
+        f = codecs.open("Mechanic.txt", encoding="utf-8")
+        self.label = QtWidgets.QLabel(f.read())
+        self.vbox.addWidget(self.label)
+        f.close()
 
 
 
