@@ -69,14 +69,19 @@ class Theory(QtWidgets.QWidget):
         self.basicKin.clicked.connect(theory.openbck)
         self.rpd = QtWidgets.QPushButton("Равномермерное  прямолинейное движение")
         self.kinlayout.addWidget(self.rpd)
+        self.rpd.clicked.connect(theory.openrpd)
         self.rzrpd = QtWidgets.QPushButton("Решение задач на равномерное прямолинейное движение")
         self.kinlayout.addWidget(self.rzrpd)
+        self.rzrpd.clicked.connect(theory.openrzrpd)
         self.srs = QtWidgets.QPushButton("Средняя скороть")
         self.kinlayout.addWidget(self.srs)
+        self.srs.clicked.connect(theory.opensrs)
         self.rzsrs = QtWidgets.QPushButton("Решение задач на среднюю скорость")
         self.kinlayout.addWidget(self.rzsrs)
+        self.rzsrs.clicked.connect(theory.openrzsrs)
         self.ryd = QtWidgets.QPushButton("Равноускоренное движение")
         self.kinlayout.addWidget(self.ryd)
+        self.ryd.clicked.connect(theory.openryd)
         self.rzryd = QtWidgets.QPushButton("Решение задач на равноускоренное движение")
         self.kinlayout.addWidget(self.rzryd)
         self.pod = QtWidgets.QPushButton("Свободное падение. Ускорение свободного падение")
@@ -219,10 +224,74 @@ class BasikConceptKinematics(QtWidgets.QWidget):
         self.vbox = QtWidgets.QVBoxLayout()
         bck.setLayout(self.vbox)
         f = codecs.open("BasicConceptKinematics.txt", encoding="utf-8")
-        self.label =QtWidgets.QLabel(f.read())
+        self.label = QtWidgets.QLabel(f.read())
         self.vbox.addWidget(self.label)
         f.close()
 
+
+
+
+class RPD(QtWidgets.QWidget):
+    def setupUi(self, rpd):
+        rpd.resize(500, 500)
+        self.vbox = QtWidgets.QVBoxLayout()
+        rpd.setLayout(self.vbox)
+        f = codecs.open("RPD.txt", encoding="utf-8")
+        self.label = QtWidgets.QLabel(f.read())
+        self.vbox.addWidget(self.label)
+        f.close()
+
+
+
+
+class RzRPD(QtWidgets.QWidget):
+    def setupUi(self, rzrpd):
+        rzrpd.resize(500, 500)
+        self.vbox = QtWidgets.QVBoxLayout()
+        rzrpd.setLayout(self.vbox)
+        f = codecs.open("RzRPD.txt", encoding="utf-8")
+        self.label = QtWidgets.QLabel(f.read())
+        self.vbox.addWidget(self.label)
+        f.close()
+
+
+
+
+class Srs(QtWidgets.QWidget):
+    def setupUi(self, srs):
+        srs.resize(500, 500)
+        self.vbox = QtWidgets.QVBoxLayout()
+        srs.setLayout(self.vbox)
+        f = codecs.open("srs.txt", encoding="utf-8")
+        self.label = QtWidgets.QLabel(f.read())
+        self.vbox.addWidget(self.label)
+        f.close()
+
+
+
+
+class RzSrs(QtWidgets.QWidget):
+    def setupUi(self, rssrs):
+        rssrs.resize(500, 500)
+        self.vbox = QtWidgets.QVBoxLayout()
+        rssrs.setLayout(self.vbox)
+        f = codecs.open("Rzsrs.txt", encoding="utf-8")
+        self.label = QtWidgets.QLabel(f.read())
+        self.vbox.addWidget(self.label)
+        f.close()
+
+
+
+
+class RYD(QtWidgets.QWidget):
+    def setupUi(self, ryd):
+        ryd.resize(500, 500)
+        self.vbox = QtWidgets.QVBoxLayout()
+        ryd.setLayout(self.vbox)
+        f = codecs.open("RYD.txt", encoding="utf-8")
+        self.label = QtWidgets.QLabel(f.read())
+        self.vbox.addWidget(self.label)
+        f.close()
 
 
 
@@ -270,6 +339,21 @@ class MyTheory(QtWidgets.QWidget):
     def openbck(self):
         self.exbck = MyBasicConceptKinematics()
         self.exbck.show()
+    def openrpd(self):
+        self.exrpd = MyRPD()
+        self.exrpd.show()
+    def openrzrpd(self):
+        self.exrzrpd = MyRzRPD()
+        self.exrzrpd.show()
+    def opensrs(self):
+        self.exsrs = MySrs()
+        self.exsrs.show()
+    def openrzsrs(self):
+        self.exrzsrs = MyRzsrs()
+        self.exrzsrs.show()
+    def openryd(self):
+        self.exryd = Myryd()
+        self.exryd.show()
 
 
 
@@ -296,6 +380,51 @@ class MyBasicConceptKinematics(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
         self.ui = BasikConceptKinematics()
+        self.ui.setupUi(self)
+
+
+
+
+class MyRPD(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.ui = RPD()
+        self.ui.setupUi(self)
+
+
+
+
+class MyRzRPD(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.ui = RzRPD()
+        self.ui.setupUi(self)
+
+
+
+
+class MySrs(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.ui = Srs()
+        self.ui.setupUi(self)
+
+
+
+
+class MyRzsrs(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.ui = RzSrs()
+        self.ui.setupUi(self)
+
+
+
+
+class Myryd(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.ui = RYD()
         self.ui.setupUi(self)
 
 
