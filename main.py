@@ -54,6 +54,7 @@ class Theory(QtWidgets.QWidget):
         self.mex.setLayout(self.mexlayout)
         self.mexbtn = QtWidgets.QPushButton("Механика")
         self.mexlayout.addWidget(self.mexbtn)
+        self.mexbtn.clicked.connect(theory.openmex)
         self.mextool = QtWidgets.QToolBox()
         self.mexlayout.addWidget(self.mextool)
         self.kin = QtWidgets.QWidget()
@@ -183,6 +184,16 @@ class Theory(QtWidgets.QWidget):
 
 
 
+class Mechanics(QtWidgets.QWidget):
+    def setupUi(self, mechanics):
+        mechanics.resize(500, 500)
+        self.vbox = QtWidgets.QVBoxLayout()
+        mechanics.setLayout(self.vbox)
+        f = open()
+
+
+
+
 
 class Lab(QtWidgets.QWidget):
     def setupUi(self, lab):
@@ -217,6 +228,18 @@ class MyTheory(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
         self.ui = Theory()
+        self.ui.setupUi(self)
+    def openmex(self):
+        self.exMechanics = MyMechanics()
+        self.exMechanics.show()
+
+
+
+
+class MyMechanics(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.ui = Mechanics()
         self.ui.setupUi(self)
 
 
