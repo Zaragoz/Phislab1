@@ -197,14 +197,22 @@ class Theory(QtWidgets.QWidget):
 
 
 class Mechanics(QtWidgets.QWidget):
+    def StrMex(self, start, end):
+        d = ""
+        with open("Mechanic.txt", encoding="utf-8") as f:
+            s = f.readlines()
+            for i in range(start):
+                s[i] = ""
+            for row in range(end+1):
+                d+=s[row]
+        return d
     def setupUi(self, mechanics):
         mechanics.resize(500, 500)
         self.vbox = QtWidgets.QVBoxLayout()
         mechanics.setLayout(self.vbox)
-        f = codecs.open("Mechanic.txt", encoding="utf-8")
-        self.label = QtWidgets.QLabel(f.read())
+        self.mex = self.StrMex(0, 57)
+        self.label = QtWidgets.QLabel(self.mex)
         self.vbox.addWidget(self.label)
-        f.close()
 
 
 
@@ -427,10 +435,12 @@ class MyTheory(QtWidgets.QWidget):
 
 
 class MyMechanics(QtWidgets.QWidget):
+
     def __init__(self):
         super().__init__()
         self.ui = Mechanics()
         self.ui.setupUi(self)
+
 
 
 
