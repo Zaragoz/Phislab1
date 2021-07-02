@@ -87,11 +87,14 @@ class Theory(QtWidgets.QWidget):
         self.rzryd.clicked.connect(theory.openrzryd)
         self.pod = QtWidgets.QPushButton("Свободное падение. Ускорение свободного падение")
         self.kinlayout.addWidget(self.pod)
+        self.pod.clicked.connect(theory.openpod)
         self.rzpod = QtWidgets.QPushButton("Решкние задач на свободное падение")
         self.kinlayout.addWidget(self.rzpod)
+        self.rzpod.clicked.connect(theory.openrzpod)
         self.tpg = QtWidgets.QPushButton("Движение тела брошенное горизонтально. Движение тела брошенное под углом к"
                                          " горизонту")
         self.kinlayout.addWidget(self.tpg)
+        self.tpg.clicked.connect(theory.opentpg)
         self.rztpg = QtWidgets.QPushButton("Решение задач на движение тела брошенное горизонтально и брошенное под"
                                            " углом к горизонту")
         self.kinlayout.addWidget(self.rztpg)
@@ -310,6 +313,45 @@ class RzRYD(QtWidgets.QWidget):
 
 
 
+class Pod(QtWidgets.QWidget):
+    def setupUi(self, pod):
+        pod.resize(500, 500)
+        self.vbox = QtWidgets.QVBoxLayout()
+        pod.setLayout(self.vbox)
+        f = codecs.open("pod,.txt", encoding="utf-8")
+        self.label = QtWidgets.QLabel(f.read())
+        self.vbox.addWidget(self.label)
+        f.close()
+
+
+
+
+class RzPod(QtWidgets.QWidget):
+    def setupUi(self, rzpod):
+        rzpod.resize(500, 500)
+        self.vbox = QtWidgets.QVBoxLayout()
+        rzpod.setLayout(self.vbox)
+        f = codecs.open("RzPod.txt", encoding="utf-8")
+        self.label = QtWidgets.QLabel(f.read())
+        self.vbox.addWidget(self.label)
+        f.close()
+
+
+
+
+class TPG(QtWidgets.QWidget):
+    def setupUi(self, tpg):
+        tpg.resize(500, 500)
+        self.vbox = QtWidgets.QVBoxLayout()
+        tpg.setLayout(self.vbox)
+        f = codecs.open("TPG.txt", encoding="utf-8")
+        self.label = QtWidgets.QLabel(f.read())
+        self.vbox.addWidget(self.label)
+        f.close()
+
+
+
+
 class Lab(QtWidgets.QWidget):
     def setupUi(self, lab):
         lab.resize(345, 345)
@@ -371,6 +413,15 @@ class MyTheory(QtWidgets.QWidget):
     def openrzryd(self):
         self.exrzryd = Myrzryd()
         self.exrzryd.show()
+    def openpod(self):
+        self.expod = Mypod()
+        self.expod.show()
+    def openrzpod(self):
+        self.exrzpod = MyRzPod()
+        self.exrzpod.show()
+    def opentpg(self):
+        self.extpg = MyTPG()
+        self.extpg.show()
 
 
 
@@ -451,6 +502,33 @@ class Myrzryd(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
         self.ui = RzRYD()
+        self.ui.setupUi(self)
+
+
+
+
+class Mypod(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.ui = Pod()
+        self.ui.setupUi(self)
+
+
+
+
+class MyRzPod(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.ui = RzPod()
+        self.ui.setupUi(self)
+
+
+
+
+class MyTPG(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.ui = TPG()
         self.ui.setupUi(self)
 
 
