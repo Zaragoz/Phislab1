@@ -84,6 +84,7 @@ class Theory(QtWidgets.QWidget):
         self.ryd.clicked.connect(theory.openryd)
         self.rzryd = QtWidgets.QPushButton("Решение задач на равноускоренное движение")
         self.kinlayout.addWidget(self.rzryd)
+        self.rzryd.clicked.connect(theory.openrzryd)
         self.pod = QtWidgets.QPushButton("Свободное падение. Ускорение свободного падение")
         self.kinlayout.addWidget(self.pod)
         self.rzpod = QtWidgets.QPushButton("Решкние задач на свободное падение")
@@ -296,6 +297,19 @@ class RYD(QtWidgets.QWidget):
 
 
 
+class RzRYD(QtWidgets.QWidget):
+    def setupUi(self, rzryd):
+        rzryd.resize(500, 500)
+        self.vbox = QtWidgets.QVBoxLayout()
+        rzryd.setLayout(self.vbox)
+        f = codecs.open("RzRYD.txt", encoding="utf-8")
+        self.label = QtWidgets.QLabel(f.read())
+        self.vbox.addWidget(self.label)
+        f.close()
+
+
+
+
 class Lab(QtWidgets.QWidget):
     def setupUi(self, lab):
         lab.resize(345, 345)
@@ -354,6 +368,9 @@ class MyTheory(QtWidgets.QWidget):
     def openryd(self):
         self.exryd = Myryd()
         self.exryd.show()
+    def openrzryd(self):
+        self.exrzryd = Myrzryd()
+        self.exrzryd.show()
 
 
 
@@ -425,6 +442,15 @@ class Myryd(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
         self.ui = RYD()
+        self.ui.setupUi(self)
+
+
+
+
+class Myrzryd(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.ui = RzRYD()
         self.ui.setupUi(self)
 
 
