@@ -1,5 +1,4 @@
 import sys
-import codecs
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class MainWindow(QtWidgets.QWidget):
@@ -98,6 +97,7 @@ class Theory(QtWidgets.QWidget):
         self.rztpg = QtWidgets.QPushButton("Решение задач на движение тела брошенное горизонтально и брошенное под"
                                            " углом к горизонту")
         self.kinlayout.addWidget(self.rztpg)
+        self.rztpg.clicked.connect(theory.openrztpg)
         self.okr = QtWidgets.QPushButton("Движение тела по окружности")
         self.kinlayout.addWidget(self.okr)
         self.rzokr = QtWidgets.QPushButton("Решение задач на движение по окружности")
@@ -217,145 +217,146 @@ class Mechanics(QtWidgets.QWidget):
 
 
 
-class Kinematics(QtWidgets.QWidget):
+class Kinematics(Mechanics, QtWidgets.QWidget):
     def setupUi(self, kinematics):
         kinematics.resize(500, 500)
         self.vbox = QtWidgets.QVBoxLayout()
         kinematics.setLayout(self.vbox)
-        f = codecs.open("Kinematics.txt", encoding="utf-8")
-        self.label = QtWidgets.QLabel(f.read())
+        self.kin = self.StrMex(6, 57)
+        self.label = QtWidgets.QLabel(self.kin)
         self.vbox.addWidget(self.label)
-        f.close()
 
 
 
 
-class BasikConceptKinematics(QtWidgets.QWidget):
+class BasikConceptKinematics(Mechanics, QtWidgets.QWidget):
     def setupUi(self, bck):
         bck.resize(500, 500)
         self.vbox = QtWidgets.QVBoxLayout()
         bck.setLayout(self.vbox)
-        f = codecs.open("BasicConceptKinematics.txt", encoding="utf-8")
-        self.label = QtWidgets.QLabel(f.read())
+        self.bck = self.StrMex(8, 23)
+        self.label = QtWidgets.QLabel(self.bck)
         self.vbox.addWidget(self.label)
-        f.close()
 
 
 
 
-class RPD(QtWidgets.QWidget):
+class RPD(Mechanics, QtWidgets.QWidget):
     def setupUi(self, rpd):
         rpd.resize(500, 500)
         self.vbox = QtWidgets.QVBoxLayout()
         rpd.setLayout(self.vbox)
-        f = codecs.open("RPD.txt", encoding="utf-8")
-        self.label = QtWidgets.QLabel(f.read())
+        self.rpd = self.StrMex(24, 29)
+        self.label = QtWidgets.QLabel(self.rpd)
         self.vbox.addWidget(self.label)
-        f.close()
 
 
 
 
-class RzRPD(QtWidgets.QWidget):
+class RzRPD(Mechanics, QtWidgets.QWidget):
     def setupUi(self, rzrpd):
         rzrpd.resize(500, 500)
         self.vbox = QtWidgets.QVBoxLayout()
         rzrpd.setLayout(self.vbox)
-        f = codecs.open("RzRPD.txt", encoding="utf-8")
-        self.label = QtWidgets.QLabel(f.read())
+        self.rzrpd = self.StrMex(30, 31)
+        self.label = QtWidgets.QLabel(self.rzrpd)
         self.vbox.addWidget(self.label)
-        f.close()
 
 
 
 
-class Srs(QtWidgets.QWidget):
+class Srs(Mechanics, QtWidgets.QWidget):
     def setupUi(self, srs):
         srs.resize(500, 500)
         self.vbox = QtWidgets.QVBoxLayout()
         srs.setLayout(self.vbox)
-        f = codecs.open("srs.txt", encoding="utf-8")
-        self.label = QtWidgets.QLabel(f.read())
+        self.srs = self.StrMex(32, 35)
+        self.label = QtWidgets.QLabel(self.srs)
         self.vbox.addWidget(self.label)
-        f.close()
 
 
 
 
-class RzSrs(QtWidgets.QWidget):
+class RzSrs(Mechanics, QtWidgets.QWidget):
     def setupUi(self, rssrs):
         rssrs.resize(500, 500)
         self.vbox = QtWidgets.QVBoxLayout()
         rssrs.setLayout(self.vbox)
-        f = codecs.open("Rzsrs.txt", encoding="utf-8")
-        self.label = QtWidgets.QLabel(f.read())
+        self.rzsrs = self.StrMex(36, 37)
+        self.label = QtWidgets.QLabel(self.rzsrs)
         self.vbox.addWidget(self.label)
-        f.close()
 
 
 
 
-class RYD(QtWidgets.QWidget):
+class RYD(Mechanics, QtWidgets.QWidget):
     def setupUi(self, ryd):
         ryd.resize(500, 500)
         self.vbox = QtWidgets.QVBoxLayout()
         ryd.setLayout(self.vbox)
-        f = codecs.open("RYD.txt", encoding="utf-8")
-        self.label = QtWidgets.QLabel(f.read())
+        self.ryd = self.StrMex(38,43)
+        self.label = QtWidgets.QLabel(self.ryd)
         self.vbox.addWidget(self.label)
-        f.close()
 
 
 
 
-class RzRYD(QtWidgets.QWidget):
+class RzRYD(Mechanics, QtWidgets.QWidget):
     def setupUi(self, rzryd):
         rzryd.resize(500, 500)
         self.vbox = QtWidgets.QVBoxLayout()
         rzryd.setLayout(self.vbox)
-        f = codecs.open("RzRYD.txt", encoding="utf-8")
-        self.label = QtWidgets.QLabel(f.read())
+        self.rzryd = self.StrMex(44, 45)
+        self.label = QtWidgets.QLabel(self.rzryd)
         self.vbox.addWidget(self.label)
-        f.close()
 
 
 
 
-class Pod(QtWidgets.QWidget):
+class Pod(Mechanics, QtWidgets.QWidget):
     def setupUi(self, pod):
         pod.resize(500, 500)
         self.vbox = QtWidgets.QVBoxLayout()
         pod.setLayout(self.vbox)
-        f = codecs.open("pod,.txt", encoding="utf-8")
-        self.label = QtWidgets.QLabel(f.read())
+        self.pod = self.StrMex(46, 48)
+        self.label = QtWidgets.QLabel(self.pod)
         self.vbox.addWidget(self.label)
-        f.close()
 
 
 
 
-class RzPod(QtWidgets.QWidget):
+class RzPod(Mechanics, QtWidgets.QWidget):
     def setupUi(self, rzpod):
         rzpod.resize(500, 500)
         self.vbox = QtWidgets.QVBoxLayout()
         rzpod.setLayout(self.vbox)
-        f = codecs.open("RzPod.txt", encoding="utf-8")
-        self.label = QtWidgets.QLabel(f.read())
+        self.rzpod = self.StrMex(49, 50)
+        self.label = QtWidgets.QLabel(self.rzpod)
         self.vbox.addWidget(self.label)
-        f.close()
 
 
 
 
-class TPG(QtWidgets.QWidget):
+class TPG(Mechanics, QtWidgets.QWidget):
     def setupUi(self, tpg):
         tpg.resize(500, 500)
         self.vbox = QtWidgets.QVBoxLayout()
         tpg.setLayout(self.vbox)
-        f = codecs.open("TPG.txt", encoding="utf-8")
-        self.label = QtWidgets.QLabel(f.read())
+        self.tpg = self.StrMex(51, 52)
+        self.label = QtWidgets.QLabel(self.tpg)
         self.vbox.addWidget(self.label)
-        f.close()
+
+
+
+
+class RzTpg(Mechanics, QtWidgets.QWidget):
+    def setupUi(self, rztpg):
+        rztpg.resize(599, 599)
+        self.vbox = QtWidgets.QVBoxLayout()
+        rztpg.setLayout(self.vbox)
+        self.rztpg = self.StrMex(53, 54)
+        self.label = QtWidgets.QLabel(self.rztpg)
+        self.vbox.addWidget(self.label)
 
 
 
@@ -430,6 +431,9 @@ class MyTheory(QtWidgets.QWidget):
     def opentpg(self):
         self.extpg = MyTPG()
         self.extpg.show()
+    def openrztpg(self):
+        self.exrztpg = MyRzTpg()
+        self.exrztpg.show()
 
 
 
@@ -539,6 +543,15 @@ class MyTPG(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
         self.ui = TPG()
+        self.ui.setupUi(self)
+
+
+
+
+class MyRzTpg(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.ui = RzTpg()
         self.ui.setupUi(self)
 
 
