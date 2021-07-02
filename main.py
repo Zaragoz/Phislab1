@@ -100,8 +100,10 @@ class Theory(QtWidgets.QWidget):
         self.rztpg.clicked.connect(theory.openrztpg)
         self.okr = QtWidgets.QPushButton("Движение тела по окружности")
         self.kinlayout.addWidget(self.okr)
+        self.okr.clicked.connect(theory.openokr)
         self.rzokr = QtWidgets.QPushButton("Решение задач на движение по окружности")
         self.kinlayout.addWidget(self.rzokr)
+        self.rzokr.clicked.connect(theory.openrzokr)
         self.mextool.addItem(self.kin, "Кинематика")
         self.din = QtWidgets.QWidget()
         self.dinlayout = QtWidgets.QVBoxLayout()
@@ -361,6 +363,30 @@ class RzTpg(Mechanics, QtWidgets.QWidget):
 
 
 
+class Okr(Mechanics, QtWidgets.QWidget):
+    def setupUi(self, okr):
+        okr.resize(588, 500)
+        self.vbox = QtWidgets.QVBoxLayout()
+        okr.setLayout(self.vbox)
+        self.okr = self.StrMex(55, 56)
+        self.label = QtWidgets.QLabel(self.okr)
+        self.vbox.addWidget(self.label)
+
+
+
+
+class RzOkr(Mechanics, QtWidgets.QWidget):
+    def setupUi(self, rzokr):
+        rzokr.resize(599, 599)
+        self.vbox = QtWidgets.QVBoxLayout()
+        rzokr.setLayout(self.vbox)
+        self.rzokr = self.StrMex(57, 57)
+        self.label = QtWidgets.QLabel(self.rzokr)
+        self.vbox.addWidget(self.label)
+
+
+
+
 class Lab(QtWidgets.QWidget):
     def setupUi(self, lab):
         lab.resize(345, 345)
@@ -434,6 +460,12 @@ class MyTheory(QtWidgets.QWidget):
     def openrztpg(self):
         self.exrztpg = MyRzTpg()
         self.exrztpg.show()
+    def openokr(self):
+        self.exokr = MyOkr()
+        self.exokr.show()
+    def openrzokr(self):
+        self.exrzokr = MyRzOkr()
+        self.exrzokr.show()
 
 
 
@@ -552,6 +584,24 @@ class MyRzTpg(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
         self.ui = RzTpg()
+        self.ui.setupUi(self)
+
+
+
+
+class MyOkr(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.ui = Okr()
+        self.ui.setupUi(self)
+
+
+
+
+class MyRzOkr(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.ui = RzOkr()
         self.ui.setupUi(self)
 
 
