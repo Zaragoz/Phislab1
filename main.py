@@ -610,7 +610,7 @@ class MyRzOkr(QtWidgets.QWidget):
 class MyLab(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
-        self ui = Lab()
+        self.ui = Lab()
         self.ui.setupUi(self)
 
 
