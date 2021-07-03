@@ -607,6 +607,15 @@ class MyRzOkr(QtWidgets.QWidget):
 
 
 
+class MyLab(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self ui = Lab()
+        self.ui.setupUi(self)
+
+
+
+
 class MyWindow(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
@@ -616,7 +625,7 @@ class MyWindow(QtWidgets.QWidget):
         self.exTheory = MyTheory()
         self.exTheory.show()
     def openLab(self):
-        self.exLab = Lab()
+        self.exLab = MyLab()
         self.exLab.show()
     def openTest(self):
         self.exTest = Test()
