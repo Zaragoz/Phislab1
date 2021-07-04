@@ -389,7 +389,7 @@ class RzOkr(Mechanics, QtWidgets.QWidget):
 
 class Lab(QtWidgets.QWidget):
     def setupUi(self, lab):
-        lab.resize(345, 345)
+        lab.resize(500, 500)
         lab.setWindowTitle("Laboratory")
         self.gridLayout = QtWidgets.QVBoxLayout()
         lab.setLayout(self.gridLayout)
@@ -405,14 +405,19 @@ class Lab(QtWidgets.QWidget):
         self.kin.setLayout(self.kinlayout)
         self.rpd = QtWidgets.QPushButton("Равноускоренное прямолинейное и равноускоренное движение")
         self.kinlayout.addWidget(self.rpd)
-        self.pod = QtWidgets.QPushButton("1")
+        self.rpd.clicked.connect(lab.openrpdanim)
+        self.pod = QtWidgets.QPushButton("Свободное падение")
         self.kinlayout.addWidget(self.pod)
-        self.gr = QtWidgets.QPushButton("2")
+        self.pod.clicked.connect(lab.openpodanim)
+        self.gr = QtWidgets.QPushButton("Движение тела брошенного горизонтально")
         self.kinlayout.addWidget(self.gr)
-        self.ygl = QtWidgets.QPushButton("3")
+        self.gr.clicked.connect(lab.opengoranim)
+        self.ygl = QtWidgets.QPushButton("Движение тела брошенноготпод углом к горизонту")
         self.kinlayout.addWidget(self.ygl)
-        self.okr = QtWidgets.QPushButton("4")
+        self.ygl.clicked.connect(lab.opencoranim)
+        self.okr = QtWidgets.QPushButton("Движение по окружности")
         self.kinlayout.addWidget(self.okr)
+        self.okr.clicked.connect(lab.openelanim)
         self.mextool.addItem(self.kin, "Кинематика")
         self.din = QtWidgets.QWidget()
         self.dinlayout = QtWidgets.QVBoxLayout()
@@ -503,6 +508,46 @@ class Lab(QtWidgets.QWidget):
         self.kvopt.setLayout(self.kvoptlayout)
         self.kvtool.addItem(self.kvopt, "Квановая оптика")
         self.toolbox.addItem(self.kv, "Квантовая физика")
+
+
+
+
+class RpdAnimation(QtWidgets.QGraphicsView):
+    def setupUi(self, rpd):
+        self.sc = QtWidgets.QGraphicsScene()
+        rpd.setScene(self.sc)
+
+
+
+
+class PodAnimation(QtWidgets.QGraphicsView):
+    def setupUi(self, pod):
+        self.sc = QtWidgets.QGraphicsScene()
+        pod.setScene(self.sc)
+
+
+
+
+class GorizontalAnimation(QtWidgets.QGraphicsView):
+    def setepUi(self, gor):
+        self.sc = QtWidgets.QGraphicsScene()
+        gor.setScene(self.sc)
+
+
+
+
+class CornerAnimation(QtWidgets.QGraphicsView):
+    def setupUi(self, cor):
+        self.sc = QtWidgets.QGraphicsScene()
+        cor.setScene(self.sc)
+
+
+
+
+class ElipsAnimation(QtWidgets.QGraphicsView):
+    def setupUi(self, el):
+        self.sc = QtWidgets.QGraphicsScene()
+        el.setScene(self.sc)
 
 
 
@@ -724,6 +769,66 @@ class MyLab(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
         self.ui = Lab()
+        self.ui.setupUi(self)
+    def openrpdanim(self):
+        self.exrpdanim = MyRpdAnimation()
+        self.exrpdanim.show()
+    def openpodanim(self):
+        self.expodanim = MyPodAnimation()
+        self.expodanim.show()
+    def opengoranim(self):
+        self.exroranim = MyGorAnimation()
+        self.exroranim.show()
+    def opencoranim(self):
+        self.excoranim = MyCornAnimtion()
+        self.excoranim.show()
+    def openelanim(self):
+        self.exelanim = MyElAnimation()
+        self.exelanim.show()
+
+
+
+
+class MyRpdAnimation(QtWidgets.QGraphicsView):
+    def __init__(self):
+        super().__init__()
+        self.ui = RpdAnimation()
+        self.ui.setupUi(self)
+
+
+
+
+class MyPodAnimation(QtWidgets.QGraphicsView):
+    def __init__(self):
+        super().__init__()
+        self.ui = PodAnimation()
+        self.ui.setupUi(self)
+
+
+
+
+class MyGorAnimation(QtWidgets.QGraphicsView):
+    def __init__(self):
+        super().__init__()
+        self.ui = GorizontalAnimation()
+        self.ui.setepUi(self)
+
+
+
+
+class MyCornAnimtion(QtWidgets.QGraphicsView):
+    def __init__(self):
+        super().__init__()
+        self.ui = CornerAnimation()
+        self.ui.setupUi(self)
+
+
+
+
+class MyElAnimation(QtWidgets.QGraphicsView):
+    def __init__(self):
+        super().__init__()
+        self.ui = ElipsAnimation()
         self.ui.setupUi(self)
 
 

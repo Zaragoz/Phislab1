@@ -20,9 +20,9 @@ class MyMainWindow(QtWidgets.QWidget):
 
 class GraphicView(QtWidgets.QGraphicsView):
     def setupUi(self, gh):
-        gh.s = QtWidgets.QGraphicsScene()
-        gh.setScene(gh.s)
-        self.item = gh.s.addRect(0, 0, 30, 30)
+        self.s = QtWidgets.QGraphicsScene()
+        gh.setScene(self.s)
+        self.item = self.s.addRect(0, 0, 30, 30)
 
 class MyGraphicView(QtWidgets.QGraphicsView):
     def __init__(self):
