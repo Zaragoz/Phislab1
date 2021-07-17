@@ -512,10 +512,29 @@ class Lab(QtWidgets.QWidget):
 
 
 
-class RpdAnimation(QtWidgets.QGraphicsView):
-    def setupUi(self, rpd):
-        self.sc = QtWidgets.QGraphicsScene()
-        rpd.setScene(self.sc)
+class RPDAnimation(QtWidgets.QWidget):
+    def setupUI(self, rpd):
+        rpd.resize(499, 344)
+        self.vbox = QtWidgets.QVBoxLayout()
+        rpd.setLayout(self.vbox)
+        self.view = RPDAnimationView()
+        self.vbox.addWidget(self.view)
+
+
+
+
+class RPDAnimationView(QtWidgets.QGraphicsView):
+    def __init__(self):
+        super(RPDAnimationView, self).__init__()
+        self.sc = RPDAnimationScene()
+        self.setScene(self.sc)
+
+
+
+
+class RPDAnimationScene(QtWidgets.QGraphicsScene):
+    def __init__(self):
+        super(RPDAnimationScene, self).__init__()
 
 
 
@@ -771,7 +790,7 @@ class MyLab(QtWidgets.QWidget):
         self.ui = Lab()
         self.ui.setupUi(self)
     def openrpdanim(self):
-        self.exrpdanim = MyRpdAnimation()
+        self.exrpdanim = MyRPDAnimation()
         self.exrpdanim.show()
     def openpodanim(self):
         self.expodanim = MyPodAnimation()
@@ -789,11 +808,11 @@ class MyLab(QtWidgets.QWidget):
 
 
 
-class MyRpdAnimation(QtWidgets.QGraphicsView):
+class MyRPDAnimation(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
-        self.ui = RpdAnimation()
-        self.ui.setupUi(self)
+        self.ui = RPDAnimation()
+        self.ui.setupUI(self)
 
 
 
