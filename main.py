@@ -514,11 +514,26 @@ class Lab(QtWidgets.QWidget):
 
 class RPDAnimation(QtWidgets.QWidget):
     def setupUI(self, rpd):
-        rpd.resize(499, 344)
-        self.vbox = QtWidgets.QVBoxLayout()
+        rpd.resize(500, 500)
+        self.vbox = QtWidgets.QGridLayout()
         rpd.setLayout(self.vbox)
         self.view = RPDAnimationView()
-        self.vbox.addWidget(self.view)
+        self.vbox.addWidget(self.view, 0,0, 0,-1)
+        self.startspeededit = QtWidgets.QLineEdit("Началььная скорость")
+        self.vbox.addWidget(self.startspeededit, 1,0)
+        self.speededit = QtWidgets.QLineEdit("Скорость")
+        self.vbox.addWidget(self.speededit, 2,0)
+        self.accedit = QtWidgets.QLineEdit("Ускорение")
+        self.vbox.addWidget(self.accedit, 3,0)
+        self.distedit = QtWidgets.QLineEdit("Путь")
+        self.vbox.addWidget(self.distedit, 1,1, 1,-1)
+        self.timeedit = QtWidgets.QLineEdit("Время")
+        self.vbox.addWidget(self.timeedit, 2,1, 2,-1)
+        self.startbtn = QtWidgets.QPushButton("Start")
+        self.vbox.addWidget(self.startbtn, 3,1)
+        self.stopbtn = QtWidgets.QPushButton("Stop")
+        self.vbox.addWidget(self.stopbtn, 3,2)
+
 
 
 
@@ -535,6 +550,8 @@ class RPDAnimationView(QtWidgets.QGraphicsView):
 class RPDAnimationScene(QtWidgets.QGraphicsScene):
     def __init__(self):
         super(RPDAnimationScene, self).__init__()
+        self.setSceneRect(0, 0, 234, 299)
+
 
 
 
