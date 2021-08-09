@@ -514,7 +514,7 @@ class Lab(QtWidgets.QWidget):
 
 class RPDAnimation(QtWidgets.QWidget):
     def setupUI(self, rpd):
-        rpd.resize(500, 500)
+        rpd.setFixedSize(1500, 800)
         self.vbox = QtWidgets.QGridLayout()
         rpd.setLayout(self.vbox)
         self.view = RPDAnimationView()
@@ -550,8 +550,38 @@ class RPDAnimationView(QtWidgets.QGraphicsView):
 class RPDAnimationScene(QtWidgets.QGraphicsScene):
     def __init__(self):
         super(RPDAnimationScene, self).__init__()
-        self.setSceneRect(0, 0, 234, 299)
+        self.dist = 1500
+        self.setSceneRect(0, 0, 1500,600)
+        self.fillscene()
+    def fillscene(self):
+        self.item=RPDAnimationItem()
+        self.addItem(self.item)
+    def drawBackground(self, painter, rec):
+        painter.setPen(QtGui.QPen(QtCore.Qt.black, 2))
+        painter.drawLine(0,self.height()-20, self.width(), self.height()-20 )
+        x = 0
+        painter.setPen(QtGui.QPen(QtCore.Qt.black, 1))
+        while x <= self.dist:
+            painter.drawLine(x+30,self.height()-15, x+30,self.height()-25)
+            painter.drawText(x+30, self.height()-20, 30,30, 1, str(x))
+            x+=30
 
+
+
+
+class RPDAnimationItem(QtWidgets.QGraphicsItem):
+    def __init__(self):
+        super(RPDAnimationItem, self).__init__()
+        self.x = 500
+        self.y = 488
+        self.w = 210
+        self.h = 90
+    def boundingRect(self):
+        return QtCore.QRectF(self.x, self.y, self.w, self.h)
+    def paint(self, painter, options, widget):
+        painter.setPen(QtGui.QPen(QtCore.Qt.gray, 3))
+        painter.drawRect(0,488, 210,70)
+        painter.drawEllipse(0,558,30,30)
 
 
 
