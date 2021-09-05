@@ -511,7 +511,7 @@ class Lab(QtWidgets.QWidget):
 
 
 
-
+#dkjnsk
 class RPDAnimation(QtWidgets.QWidget):
     def setupUI(self, rpd):
         rpd.setFixedSize(1500, 800)
@@ -572,13 +572,13 @@ class RPDAnimationScene(QtWidgets.QGraphicsScene):
             x+=30
 
 
-
+#jgj
 
 class RPDAnimationItem(QtWidgets.QGraphicsItem, RPDAnimation):
     def __init__(self):
         super().__init__()
     def boundingRect(self):
-        return QtCore.QRectF(30, 488, 290, 90)
+        return QtCore.QRectF(30, 488, 290, 91)
     def paint(self, painter, options, widget):
         painter.setPen(QtGui.QPen(QtCore.Qt.gray, 3))
         painter.drawRect(self.calc+30,480, 210,70)
@@ -903,7 +903,7 @@ class MyElAnimation(QtWidgets.QGraphicsView):
         super().__init__()
         self.ui = ElipsAnimation()
         self.ui.setupUi(self)
-
+#sifisfi
 
 
 
