@@ -520,14 +520,19 @@ class RPDAnimation(QtWidgets.QWidget):
         self.view = RPDAnimationView()
         self.vbox.addWidget(self.view, 0,0, 0,-1)
         self.startspeededit = QtWidgets.QLineEdit("Началььная скорость")
+        self.startspeed = self.startspeededit.text()
         self.vbox.addWidget(self.startspeededit, 1,0)
-        self.speededit = QtWidgets.QLineEdit("Скорость")
+        self.speededit = QtWidgets.QLineEdit("0")
+        self.speed = self.speededit.text()
         self.vbox.addWidget(self.speededit, 2,0)
         self.accedit = QtWidgets.QLineEdit("Ускорение")
+        self.acc = self.startspeededit.inputMask()
         self.vbox.addWidget(self.accedit, 3,0)
-        self.distedit = QtWidgets.QLineEdit("Путь")
+        self.distedit = QtWidgets.QLineEdit("0")
+        self.dist = self.distedit.inputMask()
         self.vbox.addWidget(self.distedit, 1,1, 1,-1)
         self.timeedit = QtWidgets.QLineEdit("Время")
+        self.time = self.startspeededit.inputMask()
         self.vbox.addWidget(self.timeedit, 2,1, 2,-1)
         self.startbtn = QtWidgets.QPushButton("Start")
         self.vbox.addWidget(self.startbtn, 3,1)
@@ -569,19 +574,21 @@ class RPDAnimationScene(QtWidgets.QGraphicsScene):
 
 
 
-class RPDAnimationItem(QtWidgets.QGraphicsItem):
+class RPDAnimationItem(QtWidgets.QGraphicsItem, RPDAnimation):
     def __init__(self):
-        super(RPDAnimationItem, self).__init__()
-        self.x = 500
-        self.y = 488
-        self.w = 210
-        self.h = 90
+        super().__init__()
     def boundingRect(self):
-        return QtCore.QRectF(self.x, self.y, self.w, self.h)
+        return QtCore.QRectF(30, 488, 290, 90)
     def paint(self, painter, options, widget):
         painter.setPen(QtGui.QPen(QtCore.Qt.gray, 3))
-        painter.drawRect(0,488, 210,70)
-        painter.drawEllipse(0,558,30,30)
+        painter.drawRect(self.calc+30,480, 210,70)
+        painter.drawEllipse(30,550,30,30)
+        painter.drawEllipse(210, 550, 30, 30)
+    def calc(self):
+        return 1
+
+        #elif not(self.startspeed.isalpha()) and not(self.dist.isalpha()):
+
 
 
 
