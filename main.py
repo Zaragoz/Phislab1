@@ -927,7 +927,7 @@ class MyWindow(QtWidgets.QWidget):#самое преое окно, которо�
     def openSP(self):
         self.exSP = SolvProblem()
         self.exSP.show()
-
+#
 
 
 
