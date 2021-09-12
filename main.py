@@ -1,55 +1,55 @@
-import sys
-from PyQt5 import QtCore, QtGui, QtWidgets
+import sys#модуль, который дает информацию о том, как питон взаимодействует с операционкой
+from PyQt5 import QtCore, QtGui, QtWidgets#QtCore связи с обектами(размеры, расположение), QtGui для рисования, QtWidgets для создания и работы с виджатами
 
-class MainWindow(QtWidgets.QWidget):
-    def setupUi(self, mainWindow):
-        mainWindow.setWindowTitle("PhisLab")
-        mainWindow.resize(1200, 500)
-        mainWindow.setFixedHeight(500)
-        self.HorizontalLayout = QtWidgets.QHBoxLayout()
-        mainWindow.setLayout(self.HorizontalLayout)
-        self.VerticalLayout = QtWidgets.QVBoxLayout()
-        self.HorizontalLayout.addLayout(self.VerticalLayout)
-        self.TheoryBtn = QtWidgets.QPushButton("Теория")
-        self.TheoryBtn.setFixedSize(380, 100)
-        self.TheoryBtn.setFont(QtGui.QFont('Arial', 15))
-        self.VerticalLayout.addWidget(self.TheoryBtn)
-        self.TheoryBtn.clicked.connect(mainWindow.openTheory)
-        self.LabBtn = QtWidgets.QPushButton("Лаборотолки")
+class MainWindow(QtWidgets.QWidget):#главое окно, в нем прописываеися виджеты, размеры; для того чтобы работало нужен второй класс Mywindow(он внизу)
+    def setupUi(self, mainWindow):#в ней все прописвается; mainWindow для прописания главного окна, обработок нажатий
+        mainWindow.setWindowTitle("PhisLab")#назавание окна
+        mainWindow.resize(1200, 500)#минимальнвй размер (Х, У)
+        mainWindow.setFixedHeight(500)#фиксированный размер У
+        self.HorizontalLayout = QtWidgets.QHBoxLayout()#горизонтальное расположение
+        mainWindow.setLayout(self.HorizontalLayout)#добовляем лаяут в окно
+        self.VerticalLayout = QtWidgets.QVBoxLayout()#объявление вертикального лаяута
+        self.HorizontalLayout.addLayout(self.VerticalLayout)#добовдение его в горизонтальный лаяут
+        self.TheoryBtn = QtWidgets.QPushButton("Теория")#объявление кнопки; здесь будет теория по всем темам
+        self.TheoryBtn.setFixedSize(380, 100)#размер кнопки
+        self.TheoryBtn.setFont(QtGui.QFont('Arial', 15))#стиль кнопки
+        self.VerticalLayout.addWidget(self.TheoryBtn)#добовляем кнопку в вертикальный
+        self.TheoryBtn.clicked.connect(mainWindow.openTheory)#обработка нажатия в втором классе прописано что сделать
+        self.LabBtn = QtWidgets.QPushButton("Лаборотолки")#сдесь будут анимации, лабораторки
         self.LabBtn.setFixedSize(380, 100)
         self.LabBtn.setFont(QtGui.QFont('Arial', 15))
         self.VerticalLayout.addWidget(self.LabBtn, )
         self.LabBtn.clicked.connect(mainWindow.openLab)
-        self.TestBtn = QtWidgets.QPushButton("Тесты")
+        self.TestBtn = QtWidgets.QPushButton("Тесты")#тетсы по темам
         self.TestBtn.setFixedSize(380, 100)
         self.TestBtn.setFont(QtGui.QFont('Arial', 15))
         self.VerticalLayout.addWidget(self.TestBtn)
         self.TestBtn.clicked.connect(mainWindow.openTest)
-        self.GraphBtn = QtWidgets.QPushButton("Построеие графиков")
+        self.GraphBtn = QtWidgets.QPushButton("Построеие графиков")#построение графиков
         self.GraphBtn.setFixedSize(380, 100)
         self.GraphBtn.setFont(QtGui.QFont('Arial', 15))
         self.VerticalLayout.addWidget(self.GraphBtn)
         self.GraphBtn.clicked.connect(mainWindow.openGraph)
-        self.SPBtn = QtWidgets.QPushButton("Решение задач")
+        self.SPBtn = QtWidgets.QPushButton("Решение задач")#нейронка по решение задач
         self.SPBtn.setFixedSize(380, 100)
         self.SPBtn.setFont(QtGui.QFont('Arial', 15))
         self.VerticalLayout.addWidget(self.SPBtn)
         self.SPBtn.clicked.connect(mainWindow.openSP)
-        self.Label = QtWidgets.QLabel("О Приложении")
+        self.Label = QtWidgets.QLabel("О Приложении")#метка, я думал там написать о приложении
         self.HorizontalLayout.addWidget(self.Label)
 
 
 
 
-class Theory(QtWidgets.QWidget):
-    def setupUi(self, theory):
+class Theory(QtWidgets.QWidget):#класс в котором список тем, при нажатии на тему открывается ноаое окно; пока что не вся теория
+    def setupUi(self, theory):#похожие строчки не буду объяснять =)
         theory.resize(700, 500)
         theory.setWindowTitle("Theory")
         self.gridLayout = QtWidgets.QVBoxLayout()
         theory.setLayout(self.gridLayout)
-        self.toolbox = QtWidgets.QToolBox()
+        self.toolbox = QtWidgets.QToolBox()#откройте теорию и посмотрите, не знаю как объяснить; список закладок
         self.gridLayout.addWidget(self.toolbox)
-        self.mex = QtWidgets.QWidget()
+        self.mex = QtWidgets.QWidget()#подзокладка
         self.mexlayout = QtWidgets.QVBoxLayout()
         self.mex.setLayout(self.mexlayout)
         self.mexbtn = QtWidgets.QPushButton("Механика")
@@ -198,9 +198,9 @@ class Theory(QtWidgets.QWidget):
 
 
 
-class Mechanics(QtWidgets.QWidget):
-    def StrMex(self, start, end):
-        d = ""
+class Mechanics(QtWidgets.QWidget):#теория по всей механике
+    def StrMex(self, start, end):#это я умный =)
+        d = ""#из текмт файла берется информация
         with open("Mechanic.txt", encoding="utf-8") as f:
             s = f.readlines()
             for i in range(start):
@@ -219,7 +219,7 @@ class Mechanics(QtWidgets.QWidget):
 
 
 
-class Kinematics(Mechanics, QtWidgets.QWidget):
+class Kinematics(Mechanics, QtWidgets.QWidget):#это я еще умней)
     def setupUi(self, kinematics):
         kinematics.resize(500, 500)
         self.vbox = QtWidgets.QVBoxLayout()
@@ -511,8 +511,8 @@ class Lab(QtWidgets.QWidget):
 
 
 
-#dkjnsk
-class RPDAnimation(QtWidgets.QWidget):
+
+class RPDAnimation(QtWidgets.QWidget):#главное окно по первой анимации, которой пока нет
     def setupUI(self, rpd):
         rpd.setFixedSize(1500, 800)
         self.vbox = QtWidgets.QGridLayout()
@@ -543,55 +543,55 @@ class RPDAnimation(QtWidgets.QWidget):
 
 
 
-class RPDAnimationView(QtWidgets.QGraphicsView):
+class RPDAnimationView(QtWidgets.QGraphicsView):#общая картина
     def __init__(self):
         super(RPDAnimationView, self).__init__()
-        self.sc = RPDAnimationScene()
-        self.setScene(self.sc)
+        self.sc = RPDAnimationScene()#чать картины
+        self.setScene(self.sc)#добовление части
 
 
 
 
-class RPDAnimationScene(QtWidgets.QGraphicsScene):
+class RPDAnimationScene(QtWidgets.QGraphicsScene):#часть картины
     def __init__(self):
         super(RPDAnimationScene, self).__init__()
-        self.dist = 1500
-        self.setSceneRect(0, 0, 1500,600)
+        self.dist = 1500#хз зачем
+        self.setSceneRect(0, 0, 1500,600)#размеры картины
         self.fillscene()
-    def fillscene(self):
-        self.item=RPDAnimationItem()
-        self.addItem(self.item)
-    def drawBackground(self, painter, rec):
-        painter.setPen(QtGui.QPen(QtCore.Qt.black, 2))
-        painter.drawLine(0,self.height()-20, self.width(), self.height()-20 )
+    def fillscene(self):#для обрабоки айтема
+        self.item=RPDAnimationItem()#вызов айтома
+        self.addItem(self.item)#добовление
+    def drawBackground(self, painter, rec):#задний фон, здесь я тоже умный =)
+        painter.setPen(QtGui.QPen(QtCore.Qt.black, 2))#задаем параметры кисти
+        painter.drawLine(0,self.height()-20, self.width(), self.height()-20 )#рисует горизонтальную линию
         x = 0
-        painter.setPen(QtGui.QPen(QtCore.Qt.black, 1))
-        while x <= self.dist:
+        painter.setPen(QtGui.QPen(QtCore.Qt.black, 1))#задаем другие параметры кистс
+        while x <= self.dist:#циул дл ячерточек и цифорок
             painter.drawLine(x+30,self.height()-15, x+30,self.height()-25)
             painter.drawText(x+30, self.height()-20, 30,30, 1, str(x))
             x+=30
 
 
-#jgj
 
-class RPDAnimationItem(QtWidgets.QGraphicsItem, RPDAnimation):
+
+class RPDAnimationItem(QtWidgets.QGraphicsItem, RPDAnimation):#айтем
     def __init__(self):
         super().__init__()
-    def boundingRect(self):
-        return QtCore.QRectF(30, 488, 290, 91)
-    def paint(self, painter, options, widget):
+    def boundingRect(self):#обязательная функция
+        return QtCore.QRectF(30, 488, 290, 91)#размер обекта
+    def paint(self, painter, options, widget):#обязательная фнкция
         painter.setPen(QtGui.QPen(QtCore.Qt.gray, 3))
-        painter.drawRect(self.calc+30,480, 210,70)
-        painter.drawEllipse(30,550,30,30)
+        painter.drawRect(30,480, 210,70)#рисует прямокгольник
+        painter.drawEllipse(30,550,30,30)#круг
         painter.drawEllipse(210, 550, 30, 30)
-    def calc(self):
+    def calc(self):#долго думал как заставить двигаться, не получилось
         return 1
 
         #elif not(self.startspeed.isalpha()) and not(self.dist.isalpha()):
 
 
 
-
+#кроме первого окна с анимацией нисего не седлано
 
 class PodAnimation(QtWidgets.QGraphicsView):
     def setupUi(self, pod):
@@ -647,10 +647,10 @@ class SolvProblem(QtWidgets.QWidget):
 
 
 
-class MyTheory(QtWidgets.QWidget):
+class MyTheory(QtWidgets.QWidget):#класс в котором обрабатывается открытие теории; сначала открывается этот класс
     def __init__(self):
         super().__init__()
-        self.ui = Theory()
+        self.ui = Theory()#потом открывается этот с виджатами
         self.ui.setupUi(self)
     def openmex(self):
         self.exMechanics = MyMechanics()
@@ -907,7 +907,7 @@ class MyElAnimation(QtWidgets.QGraphicsView):
 
 
 
-class MyWindow(QtWidgets.QWidget):
+class MyWindow(QtWidgets.QWidget):#самое преое окно, которое отерывается при запуске программы
     def __init__(self):
         super().__init__()
         self.ui = MainWindow()
@@ -931,7 +931,7 @@ class MyWindow(QtWidgets.QWidget):
 
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':#это для запуска окон
     app = QtWidgets.QApplication(sys.argv)
     window = MyWindow()
     window.show()
